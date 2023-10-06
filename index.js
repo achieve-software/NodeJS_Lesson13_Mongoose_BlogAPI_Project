@@ -22,7 +22,7 @@ require("./src/dbConnection");
 app.all("/", (req, res) => {
   res.send("WELCOME TO BLOG API");
 });
-
+app.use('/blog', require('./src/routes/blogRoute'))
 
 app.use(require("./src/errorHandler"));
 
