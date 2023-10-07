@@ -24,6 +24,9 @@ app.all("/", (req, res) => {
 });
 app.use('/blog', require('./src/routes/blogRoute'))
 
+
+
+require('./src/sync')()
 app.use(require("./src/errorHandler"));
 
 app.listen(PORT, () => console.log("Running: http://127.0.0.1:" + PORT));
