@@ -49,8 +49,16 @@ const blogCategorySchema = new mongoose.Schema(
   }
 );
 
-const blogPostSchema = new mongoose.Schema(
-  {
+const blogPostSchema = new mongoose.Schema( {
+
+blogCategoryId: {
+  type:mongoose.Schema.ObjectId,
+  required:true,
+  ref:"BlogCategory"
+},
+
+
+  
     title: {
       type: String,
       trim: true,
