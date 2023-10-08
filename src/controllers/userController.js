@@ -58,4 +58,56 @@ module.exports.User = {
     res.sendStatus( (data.deletedCount >= 1) ? 204 : 404 )
   
   },
+
+  login: async (req, res) => {
+
+    const { email, password } = req.body
+
+    if (email && password) {
+
+        // const user = await User.findOne({ email: email, password: passwordEncrypt(password) })
+        // No need passwordEncrypt, because using "set" in model:
+        const user = await User.findOne({ email: email, password: password })
+        if (user) {
+
+            // Set Session:
+            req.session = {
+                user: {
+                    email: user.email,
+                    password: user.password
+                }
+            }
+            // Set Cookie:
+            if (req.body?.rememberMe) {
+                // Set Cookie maxAge:
+                req.sessionOptions.maxAge = 1000 * 60 * 60 * 24 * 3 // 3 Days
+            }
+
+            res.status(200).send({
+                error: false,
+                result: user,
+                session: req.session
+            })
+
+        } else {
+
+            res.errorStatusCode = 401
+            throw new Error('Login parameters are not true.')
+
+        }
+
+    } else {
+
+        res.errorStatusCode = 400
+        throw new Error('Email and Password are required.')
+
+    }
+
+},
+
+
+
+
+
+
   };
