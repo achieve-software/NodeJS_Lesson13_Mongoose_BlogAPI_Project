@@ -107,6 +107,14 @@ module.exports.User = {
 
 
 
+logout: async (req, res) => {
+  // Set session to null:
+  req.session = null
+  res.status(200).send({
+      error: false,
+      message: 'Logout OK'
+  })
+},
 
 
 
