@@ -1,8 +1,9 @@
 "use strict"
 
 
-require("express-async-erors")
-const User =require("../model/userModel")
+require('express-async-errors')
+
+const User = require('../models/userModel')
 
 module.exports.User = {
     list: async (req, res) => {
@@ -25,9 +26,9 @@ module.exports.User = {
     },
     read: async (req, res) => {
   
-      // req.params.categoryId
-      // const data = await User.findById(req.params.categoryId)
-      const data = await User.findOne({ _id: req.params.categoryId },req.body)
+      // req.params.userId
+      // const data = await User.findById(req.params.userId)
+      const data = await User.findOne({ _id: req.params.userId },req.body)
   
       res.status(200).send({
           error: false,
@@ -38,21 +39,21 @@ module.exports.User = {
   
   update: async (req, res) => {
           
-    // const data = await User.findByIdAndUpdate(req.params.categoryId, req.body, { new: true }) // return new-data
-    const data = await User.updateOne({ _id: req.params.categoryId }, req.body)
+    // const data = await User.findByIdAndUpdate(req.params.userId, req.body, { new: true }) // return new-data
+    const data = await User.updateOne({ _id: req.params.userId }, req.body)
   
     res.status(202).send({
         error: false,
         body: req.body,
         result: data, // update infos
-        newData: await User.findOne({ _id: req.params.categoryId })
+        newData: await User.findOne({ _id: req.params.userId })
     })
   
   },
   
   delete: async (req, res) => {
           
-    const data = await User.deleteOne({ _id: req.params.categoryId })
+    const data = await User.deleteOne({ _id: req.params.userId })
   
     res.sendStatus( (data.deletedCount >= 1) ? 204 : 404 )
   

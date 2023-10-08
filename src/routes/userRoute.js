@@ -1,13 +1,18 @@
-
 "use strict"
+/* -------------------------------------------------------
+    EXPRESSJS - BLOG Project with Mongoose
+------------------------------------------------------- */
 
+const router = require('express').Router()
 
+const { User } = require('../controllers/userController')
 
-const router = require("express").Router()
+// ------------------------------------------
+// User
+// ------------------------------------------
 
-const {User} =require("../controllers/userController")
-
-
+// Login/logout:
+ 
 
 
 router.route('/')
@@ -18,3 +23,5 @@ router.route('/:userId')
     .get(User.read)
     .put(User.update)
     .delete(User.delete)
+
+module.exports = router
