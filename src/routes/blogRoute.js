@@ -30,4 +30,7 @@ router.route('/post/:postId')
     .put(BlogPost.update)
     .delete(BlogPost.delete)
 
+    
+router.get('/category/:categoryId/posts', BlogPost.listCategoryPosts)
+
 module.exports = router
