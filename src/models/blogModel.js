@@ -1,4 +1,4 @@
-"use strict";
+c
 
 const mongoose = require("mongoose");
 // const nameSchema = new mongoose.Schema(
